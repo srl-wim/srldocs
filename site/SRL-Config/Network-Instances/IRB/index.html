@@ -1,0 +1,976 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../../images/SRL-github.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.12">
+    
+    
+      
+        <title>MAC-VRF with IRB - My Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.4dd2dd8d.min.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.6a5ad368.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
+  
+    
+      <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mac-vrf-with-irb" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../../.." title="My Docs" class="md-header-nav__button md-logo" aria-label="My Docs">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            My Docs
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              MAC-VRF with IRB
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="My Docs" class="md-nav__button md-logo" aria-label="My Docs">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    My Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Welcome to SRLDocs" class="md-nav__link">
+      Welcome to SRLDocs
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      SRL Config
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="SRL Config" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        SRL Config
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-1" type="checkbox" id="nav-2-1" checked>
+    
+    <label class="md-nav__link" for="nav-2-1">
+      Network Instances
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Network Instances" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-1">
+        <span class="md-nav__icon md-icon"></span>
+        Network Instances
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        MAC-VRF with IRB
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" title="MAC-VRF with IRB" class="md-nav__link md-nav__link--active">
+      MAC-VRF with IRB
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-mac-vrf-instance-and-sub-interfaces-using-irb" class="md-nav__link">
+    Configuring MAC-VRF instance and sub-interfaces using IRB
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring MAC-VRF instance and sub-interfaces using IRB">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configure-vlan-interfaces" class="md-nav__link">
+    Configure VLAN interfaces
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-irb-interface" class="md-nav__link">
+    Configure IRB interface
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-mac-vrf" class="md-nav__link">
+    Configure MAC-VRF
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attach-irb-interface-to-the-default-network-instance" class="md-nav__link">
+    Attach IRB interface to the default network-instance
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-clients" class="md-nav__link">
+    Configuring Clients
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring Clients">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#client1" class="md-nav__link">
+    Client1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#client2" class="md-nav__link">
+    Client2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lets-verfy-the-connectivity" class="md-nav__link">
+    Lets verfy the connectivity
+  </a>
+  
+    <nav class="md-nav" aria-label="Lets verfy the connectivity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#from-client-1" class="md-nav__link">
+    From CLient 1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#on-srl" class="md-nav__link">
+    On SRL
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2">
+    
+    <label class="md-nav__link" for="nav-2-2">
+      Protocols
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Protocols" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-2">
+        <span class="md-nav__icon md-icon"></span>
+        Protocols
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Protocols/BGP-SRL-cEOS/" title="Configuring eBGP between Nokia SRL and Arista cEOS" class="md-nav__link">
+      Configuring eBGP between Nokia SRL and Arista cEOS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Protocols/ISIS-SRL-cEOS/" title="Configuring ISIS between Nokia SRL and Arista cEOS" class="md-nav__link">
+      Configuring ISIS between Nokia SRL and Arista cEOS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Protocols/OSPF-SRL-cEOS/" title="Configuring OSPF between Nokia SRL and Arista cEOS" class="md-nav__link">
+      Configuring OSPF between Nokia SRL and Arista cEOS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Protocols/OSPFv3-SRL-cEOS/" title="Configuring OSPFv3 between Nokia SRL and Arista cEOS" class="md-nav__link">
+      Configuring OSPFv3 between Nokia SRL and Arista cEOS
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-3" type="checkbox" id="nav-2-3">
+    
+    <label class="md-nav__link" for="nav-2-3">
+      System
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="System" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-3">
+        <span class="md-nav__icon md-icon"></span>
+        System
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../System/TACACS/" title="TACACS+ Docker Image" class="md-nav__link">
+      TACACS+ Docker Image
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      SRL setup
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="SRL setup" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        SRL setup
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../SRL-setup/ContainerLab/" title="ContainerLab" class="md-nav__link">
+      ContainerLab
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-mac-vrf-instance-and-sub-interfaces-using-irb" class="md-nav__link">
+    Configuring MAC-VRF instance and sub-interfaces using IRB
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring MAC-VRF instance and sub-interfaces using IRB">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configure-vlan-interfaces" class="md-nav__link">
+    Configure VLAN interfaces
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-irb-interface" class="md-nav__link">
+    Configure IRB interface
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-mac-vrf" class="md-nav__link">
+    Configure MAC-VRF
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attach-irb-interface-to-the-default-network-instance" class="md-nav__link">
+    Attach IRB interface to the default network-instance
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-clients" class="md-nav__link">
+    Configuring Clients
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring Clients">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#client1" class="md-nav__link">
+    Client1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#client2" class="md-nav__link">
+    Client2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lets-verfy-the-connectivity" class="md-nav__link">
+    Lets verfy the connectivity
+  </a>
+  
+    <nav class="md-nav" aria-label="Lets verfy the connectivity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#from-client-1" class="md-nav__link">
+    From CLient 1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#on-srl" class="md-nav__link">
+    On SRL
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                <h1 id="mac-vrf-with-irb">MAC-VRF with IRB</h1>
+<p>In order to optimize the use of ip interfaces and subnets SRL support the concept of a MAC-VRF/IRB, which essentially is a bridged domain connected to an IP router interface. MAC-VRF/IRB allows to optimize the connectivity to client (e.g. server). With MAC-VRF/IRB we allow to aggregate all client in a bridged domain and hence the need for a dedicated IP interface is avoided.</p>
+<p>We will illustrate this with an example.</p>
+<p>In this example we have a SRL switch/router (leaf1) that connects 2 client through a MAC-VRF/IRB. We use 2 linux clients in this example, client 1 connected to port ethernet-1/5 on vlan 10 and client 2 connected to port ethernet-1/6 on vlan 20.</p>
+<p>We use the container environment for this setup.</p>
+<h2 id="configuring-mac-vrf-instance-and-sub-interfaces-using-irb">Configuring MAC-VRF instance and sub-interfaces using IRB</h2>
+<h3 id="configure-vlan-interfaces">Configure VLAN interfaces</h3>
+<p>on SRL leaf1 interface ethernet-1/5</p>
+<pre><code>    admin-state enable
+    vlan-tagging true
+    subinterface 1 {
+        type bridged
+        admin-state enable
+        vlan {
+            encap {
+                single-tagged {
+                    vlan-id 10
+                }
+            }
+        }
+    }
+</code></pre>
+
+<p>the important parameters are:
+- vlan-tagging: true ; allows for VLAN enabled interfaces
+- subinterface type: bridged; Bridged sub-interfaces can be associated to MAC-VRF instances, that allow MAC learning and layer-2 forwarding.
+- vlan-id: 10 is used on this interface to client1</p>
+<p>On SRL leaf1 interface ethernet-1/6 we have a similar configuration, but we use vlan 20 instead of vlan 10, to show that SRL support local VLAN significance.</p>
+<pre><code>    admin-state enable
+    vlan-tagging true
+    subinterface 1 {
+        type bridged
+        admin-state enable
+        vlan {
+            encap {
+                single-tagged {
+                    vlan-id 20
+                }
+            }
+        }
+    }
+</code></pre>
+
+<h3 id="configure-irb-interface">Configure IRB interface</h3>
+<p>Now that we have the vlan interfaces configured, we can create an IRB interface. The IRB interface is like a loopback interface. hence you dont see an association with the physical ethernet interface</p>
+<pre><code>/ interface irb1
+</code></pre>
+
+<p>IRB interface configuraton</p>
+<pre><code>    admin-state enable
+    subinterface 1 {
+        admin-state enable
+        ipv4 {
+            address 192.168.10.1/24 {
+            }
+        }
+        ipv6 {
+            address 3000:10::1/64 {
+            }
+        }
+    }
+</code></pre>
+
+<p>The IRB interface is of type routed which is the default in the system and hence you don't need to explicitly configure it. Also you create your IPv4 and IPv6 interface IP addresses, which will be the gateway IP(s) for the linux clients that are connected tot he IRB instance</p>
+<h3 id="configure-mac-vrf">Configure MAC-VRF</h3>
+<p>The next step is creating the MAC-VRF network instance and associate the bridged and IRB interfaces to it.</p>
+<pre><code>/ network-instance mac-vrf10
+</code></pre>
+
+<p>Associate interfaces</p>
+<pre><code>    type mac-vrf
+    admin-state enable
+    interface ethernet-1/5.1 {
+    }
+    interface ethernet-1/6.1 {
+    }
+    interface irb1.1 {
+    }
+</code></pre>
+
+<h3 id="attach-irb-interface-to-the-default-network-instance">Attach IRB interface to the default network-instance</h3>
+<p>Associate the same IRB interface to the network-instance default in order to attach it to the router context.</p>
+<pre><code>/ network-instance default
+</code></pre>
+
+<p>Associate the IRB interface on top of the other interfaces which connected the leaf to the spine layer e.g.</p>
+<pre><code>    type ip-vrf
+    admin-state enable
+    description &quot;GRT / Default VRF&quot;
+    ip-forwarding {
+        receive-ipv4-check true
+        receive-ipv6-check true
+    }
+    interface ethernet-1/1.1 {
+    }
+    interface ethernet-1/2.1 {
+    }
+    interface ethernet-1/3.1 {
+    }
+    interface ethernet-1/4.1 {
+    }
+    interface irb1.1 {
+    }
+    interface lo0.1 {
+    }
+</code></pre>
+
+<p>Now the SRL switch/router is ready to handle the clients so lets connect and configure the clients</p>
+<h2 id="configuring-clients">Configuring Clients</h2>
+<p>We use a docker container image which was setup through a container image</p>
+<h3 id="client1">Client1</h3>
+<p>We first spin up the container image.</p>
+<pre><code>docker run -d --privileged --name client1 --network srlinux-mgmt --hostname client1 henderiw client-alpine:1.0.0
+</code></pre>
+
+<p>After we connect it to the SRL container image using a veth pair.</p>
+<p>Once this is done we can configure the eth1 interface which is used to connect to the SRL switch/router.</p>
+<pre><code>ethtool --offload eth1 rx off tx off
+ip link add link eth1 name eth1.10 type vlan id 10
+ip link set dev eth1.10 up
+sysctl -w net.ipv6.conf.eth1.10.disable_ipv6=0
+ip addr add 192.168.10.10/24 dev eth1.10
+ip -6 addr add 3000:10::10/64 dev eth1.10
+</code></pre>
+
+<p>Lets see if this configuration got applied</p>
+<pre><code>client1:~# ifconfig eth1.10
+eth1.10   Link encap:Ethernet  HWaddr DE:13:FA:CF:FF:58
+          inet addr:192.168.10.10  Bcast:0.0.0.0  Mask:255.255.255.0
+          inet6 addr: fe80::dc13:faff:fecf:ff58/64 Scope:Link
+          inet6 addr: 3000:10::10/64 Scope:Global
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:24 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:24 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:1646 (1.6 KiB)  TX bytes:1928 (1.8 KiB)
+</code></pre>
+
+<h3 id="client2">Client2</h3>
+<p>We do the same on client 2.</p>
+<pre><code>docker run -d --privileged --name client2 --network srlinux-mgmt --hostname client2 henderiw client-alpine:1.0.0
+</code></pre>
+
+<p>After we connect it to the SRL container image using a veth pair.</p>
+<p>Once this is done we can configure the eth1 interface which is used to connect to the SRL switch/router.</p>
+<pre><code>ethtool --offload eth1 rx off tx off
+ip link add link eth1 name eth1.20 type vlan id 20
+ip link set dev eth1.20 up
+sysctl -w net.ipv6.conf.eth1.20.disable_ipv6=0
+ip addr add 192.168.10.20/24 dev eth1.20
+ip -6 addr add 3000:10::20/64 dev eth1.20
+</code></pre>
+
+<p>Lets see if this configuration got applied</p>
+<pre><code>client2:~# ifconfig eth1.20
+eth1.20   Link encap:Ethernet  HWaddr 32:64:9C:98:9E:FD
+          inet addr:192.168.10.20  Bcast:0.0.0.0  Mask:255.255.255.0
+          inet6 addr: fe80::3064:9cff:fe98:9efd/64 Scope:Link
+          inet6 addr: 3000:10::20/64 Scope:Global
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:9 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:20 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000
+          RX bytes:540 (540.0 B)  TX bytes:1592 (1.5 KiB)
+</code></pre>
+
+<h3 id="lets-verfy-the-connectivity">Lets verfy the connectivity</h3>
+<h4 id="from-client-1">From CLient 1</h4>
+<p>ping SRL routed gateway</p>
+<pre><code>client1:~# ping6 3000:10::1
+PING 3000:10::1 (3000:10::1): 56 data bytes
+64 bytes from 3000:10::1: seq=0 ttl=64 time=3.338 ms
+64 bytes from 3000:10::1: seq=1 ttl=64 time=1.423 ms
+</code></pre>
+
+<p>Ping CLient2</p>
+<pre><code>client1:~# ping6 3000:10::20
+PING 3000:10::20 (3000:10::20): 56 data bytes
+64 bytes from 3000:10::20: seq=0 ttl=64 time=0.312 ms
+64 bytes from 3000:10::20: seq=1 ttl=64 time=0.342 ms
+64 bytes from 3000:10::20: seq=2 ttl=64 time=0.354 ms
+</code></pre>
+
+<h4 id="on-srl">On SRL</h4>
+<p>Show MAC table</p>
+<pre><code class="json">A:ant1-dc-fab-f1p1-leaf1# show / network-instance mac-vrf10 bridge-table mac-table all | as json
+{
+  &quot;Network&quot;: [
+    {
+      &quot;Name&quot;: &quot;mac-vrf10&quot;,
+      &quot;Mac table&quot;: [
+        {
+          &quot;address&quot;: &quot;00:01:01:FF:00:41&quot;,
+          &quot;Destination&quot;: &quot;irb-interface&quot;,
+          &quot;Dest Index&quot;: 0,
+          &quot;Type&quot;: &quot;irb-interface&quot;,
+          &quot;Active&quot;: true,
+          &quot;Aging&quot;: &quot;N/A&quot;,
+          &quot;Last Update&quot;: &quot;2020-08-05T04:33:51.000Z&quot;
+        },
+        {
+          &quot;address&quot;: &quot;32:64:9C:98:9E:FD&quot;,
+          &quot;Destination&quot;: &quot;ethernet-1/6.1&quot;,
+          &quot;Dest Index&quot;: 8,
+          &quot;Type&quot;: &quot;learnt&quot;,
+          &quot;Active&quot;: true,
+          &quot;Aging&quot;: &quot;255&quot;,
+          &quot;Last Update&quot;: &quot;2020-08-05T05:29:43.000Z&quot;
+        },
+        {
+          &quot;address&quot;: &quot;DE:13:FA:CF:FF:58&quot;,
+          &quot;Destination&quot;: &quot;ethernet-1/5.1&quot;,
+          &quot;Dest Index&quot;: 7,
+          &quot;Type&quot;: &quot;learnt&quot;,
+          &quot;Active&quot;: true,
+          &quot;Aging&quot;: &quot;255&quot;,
+          &quot;Last Update&quot;: &quot;2020-08-05T05:29:37.000Z&quot;
+        }
+      ]
+    }
+  ],
+  &quot;Total Statistics&quot;: [
+    {
+      &quot;Counter name&quot;: &quot;Total Irb Macs&quot;,
+      &quot;Total&quot;: 1,
+      &quot;Active&quot;: 1
+    },
+    {
+      &quot;Counter name&quot;: &quot;Total Static Macs&quot;,
+      &quot;Total&quot;: 0,
+      &quot;Active&quot;: 0
+    },
+    {
+      &quot;Counter name&quot;: &quot;Total Duplicate Macs&quot;,
+      &quot;Total&quot;: 0,
+      &quot;Active&quot;: 0
+    },
+    {
+      &quot;Counter name&quot;: &quot;Total Learnt Macs&quot;,
+      &quot;Total&quot;: 2,
+      &quot;Active&quot;: 2
+    },
+    {
+      &quot;Counter name&quot;: &quot;Total Macs&quot;,
+      &quot;Total&quot;: 3,
+      &quot;Active&quot;: 3
+    }
+  ]
+}
+</code></pre>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../../.." title="Welcome to SRLDocs" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Welcome to SRLDocs
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../../Protocols/BGP-SRL-cEOS/" title="Configuring eBGP between Nokia SRL and Arista cEOS" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Configuring eBGP between Nokia SRL and Arista cEOS
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/vendor.3636a4ec.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.e9fe3281.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

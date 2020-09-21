@@ -1,0 +1,13 @@
+site_name: SRL Docs
+
+site_author: Wim Henderickx
+site_description: >-
+  SRL documentation
+
+theme:
+    name: material
+    icon:
+        logo: material/library
+    palette:
+        scheme: preference
+    favicon: images/SRL-github.png

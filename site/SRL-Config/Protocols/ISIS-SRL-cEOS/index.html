@@ -1,0 +1,1107 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../../images/SRL-github.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.12">
+    
+    
+      
+        <title>Configuring ISIS between Nokia SRL and Arista cEOS - My Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.4dd2dd8d.min.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.6a5ad368.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
+  
+    
+      <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#configuring-isis-between-nokia-srl-and-arista-ceos" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../../.." title="My Docs" class="md-header-nav__button md-logo" aria-label="My Docs">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            My Docs
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Configuring ISIS between Nokia SRL and Arista cEOS
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="My Docs" class="md-nav__button md-logo" aria-label="My Docs">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    My Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Welcome to SRLDocs" class="md-nav__link">
+      Welcome to SRLDocs
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      SRL Config
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="SRL Config" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        SRL Config
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-1" type="checkbox" id="nav-2-1">
+    
+    <label class="md-nav__link" for="nav-2-1">
+      Network Instances
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Network Instances" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-1">
+        <span class="md-nav__icon md-icon"></span>
+        Network Instances
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Network-Instances/IRB/" title="MAC-VRF with IRB" class="md-nav__link">
+      MAC-VRF with IRB
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2" checked>
+    
+    <label class="md-nav__link" for="nav-2-2">
+      Protocols
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Protocols" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-2">
+        <span class="md-nav__icon md-icon"></span>
+        Protocols
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../BGP-SRL-cEOS/" title="Configuring eBGP between Nokia SRL and Arista cEOS" class="md-nav__link">
+      Configuring eBGP between Nokia SRL and Arista cEOS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Configuring ISIS between Nokia SRL and Arista cEOS
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" title="Configuring ISIS between Nokia SRL and Arista cEOS" class="md-nav__link md-nav__link--active">
+      Configuring ISIS between Nokia SRL and Arista cEOS
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-interfaces" class="md-nav__link">
+    Configuring interfaces
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring interfaces">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wan1-srl-router" class="md-nav__link">
+    WAN1 - SRL router
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wan2-srl-router" class="md-nav__link">
+    WAN2- SRL router
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wan3-ceos-router" class="md-nav__link">
+    WAN3 - cEOS router
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-the-router-instance" class="md-nav__link">
+    Configuring the router instance
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring the router instance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wan1-srl-router_1" class="md-nav__link">
+    WAN1 - SRL router
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wan2-srl-router_1" class="md-nav__link">
+    WAN2- SRL router
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wan3-ceos-router_1" class="md-nav__link">
+    WAN3 - cEOS router
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-isis" class="md-nav__link">
+    Configuring ISIS
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring ISIS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wan1-srl-router_2" class="md-nav__link">
+    WAN1 - SRL router
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wan2-srl-router_2" class="md-nav__link">
+    WAN2 - SRL router
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wan3-ceos-router_2" class="md-nav__link">
+    WAN3 - cEOS router
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#viewing-bgp-state" class="md-nav__link">
+    Viewing BGP state
+  </a>
+  
+    <nav class="md-nav" aria-label="Viewing BGP state">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bgp-neighbor" class="md-nav__link">
+    BGP neighbor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#routing-table" class="md-nav__link">
+    Routing table
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#full-ceos-config" class="md-nav__link">
+    Full cEOS config
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../OSPF-SRL-cEOS/" title="Configuring OSPF between Nokia SRL and Arista cEOS" class="md-nav__link">
+      Configuring OSPF between Nokia SRL and Arista cEOS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../OSPFv3-SRL-cEOS/" title="Configuring OSPFv3 between Nokia SRL and Arista cEOS" class="md-nav__link">
+      Configuring OSPFv3 between Nokia SRL and Arista cEOS
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-3" type="checkbox" id="nav-2-3">
+    
+    <label class="md-nav__link" for="nav-2-3">
+      System
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="System" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-3">
+        <span class="md-nav__icon md-icon"></span>
+        System
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../System/TACACS/" title="TACACS+ Docker Image" class="md-nav__link">
+      TACACS+ Docker Image
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      SRL setup
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="SRL setup" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        SRL setup
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../SRL-setup/ContainerLab/" title="ContainerLab" class="md-nav__link">
+      ContainerLab
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-interfaces" class="md-nav__link">
+    Configuring interfaces
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring interfaces">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wan1-srl-router" class="md-nav__link">
+    WAN1 - SRL router
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wan2-srl-router" class="md-nav__link">
+    WAN2- SRL router
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wan3-ceos-router" class="md-nav__link">
+    WAN3 - cEOS router
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-the-router-instance" class="md-nav__link">
+    Configuring the router instance
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring the router instance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wan1-srl-router_1" class="md-nav__link">
+    WAN1 - SRL router
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wan2-srl-router_1" class="md-nav__link">
+    WAN2- SRL router
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wan3-ceos-router_1" class="md-nav__link">
+    WAN3 - cEOS router
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-isis" class="md-nav__link">
+    Configuring ISIS
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring ISIS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wan1-srl-router_2" class="md-nav__link">
+    WAN1 - SRL router
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wan2-srl-router_2" class="md-nav__link">
+    WAN2 - SRL router
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wan3-ceos-router_2" class="md-nav__link">
+    WAN3 - cEOS router
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#viewing-bgp-state" class="md-nav__link">
+    Viewing BGP state
+  </a>
+  
+    <nav class="md-nav" aria-label="Viewing BGP state">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bgp-neighbor" class="md-nav__link">
+    BGP neighbor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#routing-table" class="md-nav__link">
+    Routing table
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#full-ceos-config" class="md-nav__link">
+    Full cEOS config
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                <h1 id="configuring-isis-between-nokia-srl-and-arista-ceos">Configuring ISIS between Nokia SRL and Arista cEOS</h1>
+<p>This note describes how to setup isis between Nokia SRLinux and Arista cEOS. We use a triangle topology with 2 SRL and 1 cEOS device as an example</p>
+<pre><code>         WAN1 (SRL) (e1-1) -------(e1-1) WAN2 (SRL)
+            (e1-2)                        (e1-2)
+               |                            |
+               +--(Et2) WAN3 (cEOS) (Et1)---+
+</code></pre>
+
+<p>We configure both IPv4 and IPv6 to show both address families working through ISIS</p>
+<h2 id="configuring-interfaces">Configuring interfaces</h2>
+<p>First we have to configure the interfaces on the various devices</p>
+<h3 id="wan1-srl-router">WAN1 - SRL router</h3>
+<p>Configure the interface on WAN1 to WAN2 SRL</p>
+<pre><code>--{ running }--[ interface ethernet-1/1 ]--
+A:wan1# info
+    admin-state enable
+    subinterface 1 {
+        admin-state enable
+        ipv4 {
+            address 192.1.1.1/24 {
+            }
+        }
+        ipv6 {
+            address 2000:192:1::1/64 {
+            }
+        }
+    }
+</code></pre>
+
+<p>Configure the interface on WAN1 to WAN3 cEOS</p>
+<pre><code>--{ running }--[ interface ethernet-1/2 ]--
+A:wan1# info
+    admin-state enable
+    subinterface 1 {
+        admin-state enable
+        ipv4 {
+            address 192.1.3.1/24 {
+            }
+        }
+        ipv6 {
+            address 2000:192:3::1/64 {
+            }
+        }
+    }
+</code></pre>
+
+<h3 id="wan2-srl-router">WAN2- SRL router</h3>
+<p>Configure the interface on WAN2 to WAN1 SRL</p>
+<pre><code>--{ running }--[ interface ethernet-1/1 ]--
+A:wan2# info
+    subinterface 1 {
+        admin-state enable
+        ipv4 {
+            address 192.1.1.2/24 {
+            }
+        }
+        ipv6 {
+            address 2000:192:1::2/64 {
+            }
+        }
+    }
+</code></pre>
+
+<p>Configure the interface on WAN2 to WAN3 cEOS</p>
+<pre><code>--{ running }--[ interface ethernet-1/2 ]--
+A:wan2# info
+    admin-state enable
+    subinterface 1 {
+        admin-state enable
+        ipv4 {
+            address 192.1.2.1/24 {
+            }
+        }
+        ipv6 {
+            address 2000:192:2::1/64 {
+            }
+        }
+    }
+</code></pre>
+
+<h3 id="wan3-ceos-router">WAN3 - cEOS router</h3>
+<p>Configure the interface on WAN3 to WAN2 SRL</p>
+<pre><code>interface Ethernet1
+   no switchport
+   ip address 192.1.2.2/24
+   ipv6 address 2000:192:2::2/64
+</code></pre>
+
+<p>Configure the interface on WAN3 to WAN2 SRL</p>
+<pre><code>interface Ethernet2
+   no switchport
+   ip address 192.1.3.2/24
+   ipv6 address 2000:192:3::2/64
+</code></pre>
+
+<h2 id="configuring-the-router-instance">Configuring the router instance</h2>
+<p>Before we can configure ISIS we should enable the router instance on the various devices. On SRL we create a network-instance, which is like a VRF-Lite and can be used for the global routing table. In cEOS we enable ip routing and ipv6 routing.</p>
+<h3 id="wan1-srl-router_1">WAN1 - SRL router</h3>
+<pre><code>--{ running }--[ network-instance default ]--
+A:wan1# info
+    type default
+    admin-state enable
+    interface ethernet-1/1.1 {
+    }
+    interface ethernet-1/2.1 {
+    }
+    interface lo1.1 {
+    }
+</code></pre>
+
+<h3 id="wan2-srl-router_1">WAN2- SRL router</h3>
+<pre><code>--{ running }--[ network-instance default ]--
+A:wan2# info
+    type default
+    admin-state enable
+    interface ethernet-1/1.1 {
+    }
+    interface ethernet-1/2.1 {
+    }
+    interface lo1.1 {
+    }
+</code></pre>
+
+<h3 id="wan3-ceos-router_1">WAN3 - cEOS router</h3>
+<pre><code>ip routing
+!
+ipv6 unicast-routing
+!
+</code></pre>
+
+<h2 id="configuring-isis">Configuring ISIS</h2>
+<p>After the interfaces are configured we will configure an ISIS with level-L1-L2 capability between the various routers.</p>
+<h3 id="wan1-srl-router_2">WAN1 - SRL router</h3>
+<p>On SRL we create a ISIS protocol instance lab</p>
+<pre><code>--{ candidate private private-root }--[ network-instance default protocols ]--
+A:wan1# isis instance lab
+</code></pre>
+
+<p>After we configure the isis parameters like:</p>
+<ul>
+<li>admin-state: enables the isis instance</li>
+<li>interface configuration for ethernet1-1.1, ethernet1-2/1 and lo1.1</li>
+<li>IPv4-unicast</li>
+<li>IPv6-unicast</li>
+<li>
+<p>net: The NET is 8-20 octets long and consists of 3 parts: </p>
+<ol>
+<li>Area ID — A variable length field between 1 and 13 bytes. This includes the Authority and Format Identifier (AFI) as the most significant byte and the area ID.</li>
+<li>System ID — A 6-byte system identification. This value is not configurable. The system ID is derived from the system or router ID.</li>
+<li>Selector ID — A 1-byte selector identification that must contain zeros when configuring a NET. This value is not configurable. The selector ID is always 00.</li>
+</ol>
+</li>
+</ul>
+<p>There are many more features supported by SRL which can be read in the configuration guides</p>
+<pre><code>A:wan1# instance lab
+--{ running }--[ network-instance default protocols isis instance lab ]--
+A:wan1# info
+    admin-state enable
+    net [
+        49.0001.0001.0000.0000.00
+    ]
+    ipv4-unicast {
+        admin-state enable
+    }
+    ipv6-unicast {
+        admin-state enable
+    }
+    interface ethernet-1/1.1 {
+        admin-state enable
+        circuit-type point-to-point
+    }
+    interface ethernet-1/2.1 {
+        admin-state enable
+        circuit-type point-to-point
+    }
+    interface lo1.1 {
+        passive true
+    }
+</code></pre>
+
+<h3 id="wan2-srl-router_2">WAN2 - SRL router</h3>
+<p>A similar configuration is setup on WAN2 router</p>
+<pre><code>--{ running }--[ network-instance default protocols isis instance lab ]--
+A:wan2# info
+    admin-state enable
+    net [
+        49.0001.0002.0000.0000.00
+    ]
+    ipv4-unicast {
+        admin-state enable
+    }
+    ipv6-unicast {
+        admin-state enable
+    }
+    interface ethernet-1/1.1 {
+        admin-state enable
+        circuit-type point-to-point
+    }
+    interface ethernet-1/2.1 {
+        admin-state enable
+        circuit-type point-to-point
+    }
+    interface lo1.1 {
+        passive true
+    }
+</code></pre>
+
+<h3 id="wan3-ceos-router_2">WAN3 - cEOS router</h3>
+<p>On cEOS the configuration is slightly different,</p>
+<p>First we enable the isis instance with the specific net/system id and disable hello-padding</p>
+<pre><code>router isis lab
+   no hello padding
+   net 49.0001.0003.0000.0000.00
+   log-adjacency-changes
+   !
+   address-family ipv4 unicast
+   !
+   address-family ipv6 unicast
+!
+</code></pre>
+
+<p>After we map the interfaces to the isis instance</p>
+<pre><code>interface Ethernet1
+   no switchport
+   ip address 192.1.2.2/24
+   ipv6 address 2000:192:2::2/64
+   isis enable lab
+   isis network point-to-point
+!
+interface Ethernet2
+   no switchport
+   ip address 192.1.3.2/24
+   ipv6 address 2000:192:3::2/64
+   isis enable lab
+   isis network point-to-point
+!
+</code></pre>
+
+<h2 id="viewing-bgp-state">Viewing BGP state</h2>
+<p>Now that we configured OSPF on the various devices we can look at the operational state of the various devices</p>
+<h3 id="bgp-neighbor">BGP neighbor</h3>
+<p>On SRL devices</p>
+<pre><code></code></pre>
+
+<p>On cEOS device</p>
+<pre><code></code></pre>
+
+<h3 id="routing-table">Routing table</h3>
+<p>on SRL devices</p>
+<pre><code></code></pre>
+
+<p>on cEOS device</p>
+<pre><code></code></pre>
+
+<h2 id="full-ceos-config">Full cEOS config</h2>
+<pre><code>wan3(config-router-bgp)#sh running-config
+! Command: show running-config
+! device: wan3 (cEOSLab, EOS-4.24.2.1F-18613460.42421F (engineering build))
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model ribd
+!
+agent Bfd shutdown
+agent PowerManager shutdown
+agent LedPolicy shutdown
+agent Thermostat shutdown
+agent PowerFuse shutdown
+agent StandbyCpld shutdown
+agent LicenseManager shutdown
+!
+hostname wan3
+!
+spanning-tree mode mstp
+!
+no aaa root
+!
+interface Ethernet1
+   no switchport
+   ip address 192.1.2.2/24
+   ipv6 address 2000:192:2::2/64
+!
+interface Ethernet2
+   no switchport
+   ip address 192.1.3.2/24
+   ipv6 address 2000:192:3::2/64
+!
+ip routing
+!
+ipv6 unicast-routing
+!
+router bgp 300
+   neighbor 192.1.2.1 remote-as 200
+   neighbor 192.1.2.1 maximum-routes 12000
+   neighbor 192.1.3.1 remote-as 100
+   neighbor 192.1.3.1 maximum-routes 12000
+!
+end
+</code></pre>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../BGP-SRL-cEOS/" title="Configuring eBGP between Nokia SRL and Arista cEOS" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Configuring eBGP between Nokia SRL and Arista cEOS
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../OSPF-SRL-cEOS/" title="Configuring OSPF between Nokia SRL and Arista cEOS" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Configuring OSPF between Nokia SRL and Arista cEOS
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/vendor.3636a4ec.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.e9fe3281.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
