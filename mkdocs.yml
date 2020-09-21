@@ -38,14 +38,14 @@ plugins:
     - minify:
         minify_html: true
   
-  # Customization
-  extra:
-    social:
-      - icon: fontawesome/brands/github
-        link: https://github.com/srl-wim
-  
-  # Extensions
-  markdown_extensions:
+# Customization
+extra:
+social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/srl-wim
+
+# Extensions
+markdown_extensions:
     - markdown.extensions.admonition
     - markdown.extensions.attr_list
     - markdown.extensions.codehilite:
