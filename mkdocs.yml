@@ -6,78 +6,76 @@ site_description: >-
 
 repo_name: srl-wim/srldocs
 repo_url: https://github.com/srl-wim/srldocs
-
+edit_uri: ""
 theme:
-    name: material
+  name: material
 
-    # 404 page
-    static_templates:
-        - 404.html
+  # 404 page
+  static_templates:
+    - 404.html
 
-    # Don't include MkDocs' JavaScript
-    include_search_page: false
-    search_index_only: true
-
-    language: en
-    palette:
-        scheme: preference
-        # primary: black
-        accent: pink
-    font:
-        text: Manrope
-        code: Fira Mono
-    icon:
-        logo: material/library
-    
-    
-    favicon: images/SRL-github.png
+  # Don't include MkDocs' JavaScript
+  include_search_page: false
+  search_index_only: true
+ 
+  language: en
+  palette:
+    scheme: preference
+    # primary: black
+    accent: pink
+  font:
+    text: Manrope
+    code: Fira Mono
+  icon:
+    logo: material/library    
+  favicon: images/SRL-github.png
 
 # Plugins
 plugins:
-    - search
-    - minify:
-        minify_html: true
+  - search
+  - minify:
+      minify_html: true
   
 # Customization
 extra:
-social:
+  social:
     - icon: fontawesome/brands/github
       link: https://github.com/srl-wim
 
 # Extensions
 markdown_extensions:
-    - markdown.extensions.admonition
-    - markdown.extensions.attr_list
-    - markdown.extensions.codehilite:
-        guess_lang: false
-    - markdown.extensions.def_list
-    - markdown.extensions.footnotes
-    - markdown.extensions.meta
-    - markdown.extensions.toc:
-        permalink: "#"
-    - pymdownx.arithmatex
-    - pymdownx.betterem:
-        smart_enable: all
-    - pymdownx.caret
-    - pymdownx.critic
-    - pymdownx.details
-    - pymdownx.emoji:
-        emoji_index: !!python/name:materialx.emoji.twemoji
-        emoji_generator: !!python/name:materialx.emoji.to_svg
-    - pymdownx.highlight:
-        linenums_style: pymdownx-inline
-    - pymdownx.inlinehilite
-    - pymdownx.keys
-    - pymdownx.magiclink:
-        repo_url_shorthand: true
-        user: squidfunk
-        repo: mkdocs-material
-    - pymdownx.mark
-    - pymdownx.smartsymbols
-    - pymdownx.snippets:
-        check_paths: true
-    - pymdownx.superfences
-    - pymdownx.tabbed
-    - pymdownx.tasklist:
-        custom_checkbox: true
-    - pymdownx.tilde
+  - markdown.extensions.admonition
+  - markdown.extensions.attr_list
+  - markdown.extensions.codehilite:
+      guess_lang: false
+  - markdown.extensions.def_list
+  - markdown.extensions.footnotes
+  - markdown.extensions.meta
+  - markdown.extensions.toc:
+      permalink: "#"
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight:
+      linenums_style: pymdownx-inline
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      user: squidfunk
+      repo: mkdocs-material
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      check_paths: true
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
