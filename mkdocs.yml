@@ -26,9 +26,9 @@ theme:
   font:
     text: Manrope
     code: Fira Mono
-  icon:
-    logo: material/library    
-  favicon: images/SRL-github.png
+  #icon:
+  #  logo: fontawesome/solid/flask   
+  favicon: images/srl.png
 
 # Plugins
 plugins:
