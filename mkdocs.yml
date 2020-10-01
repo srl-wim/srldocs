@@ -1,21 +1,6 @@
 site_name: SRL Docs
 nav:
   - Home: index.md
-#  - Getting Started:
-#      - Introduction: getting-started/introduction.md
-#      - Containerlab: getting-started/containerlab.md
-#  - Configuration:
-#    - Introduction: configuration/introduction.md
-#    - System:
-#        - tacacs: configuration/system/tacacs.md
-#    - Interfaces:
-#        - routed interface: interfaces/routed.md
-#        - bridge interface: interfaces/bridged.md
-#        - lag: interfaces/lag.md
-#        - vlan: interfaces/vlan.md
-#    - Network-instnces:
-#        - Vrf: network-instances/vrf.md
-#        - Irb: network-instances/irb.md
   - Python CLI Plugin: 
     - Introduction: python/introduction.md
     - CLI Show plugin: python/show.md
@@ -27,14 +12,6 @@ nav:
         - data: python/data.md
         - datachildrenoftype: python/datachildrenoftype.md
         - output: python/output.md
-#  - NDK Agents:
-#    - Introduction: ndk-agents/introduction.md
-#    - Golang: ndk-agents/golang.md
-#    - Python: ndk-agents/python.md
-#    - Examples:
-#        - Test Agent: ndk-agents/examples/testagent.md
-#        - Git CLient: ndk-agents/examples/git-client.md
-#  - Usage: usage.md
 
 site_author: Wim Henderickx
 site_description: >-
