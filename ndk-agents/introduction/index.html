@@ -1,0 +1,217 @@
+<!doctype html><html lang=en class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="SRL documentation"><meta name=author content="Wim Henderickx"><link rel="shortcut icon" href=../../images/srl.png><meta name=generator content="mkdocs-1.1.2, mkdocs-material-5.5.12"><title>Building an SRL Agent - SRL Docs</title><link rel=stylesheet href=../../assets/stylesheets/main.4dd2dd8d.min.css><link rel=stylesheet href=../../assets/stylesheets/palette.6a5ad368.min.css><link href=https://fonts.gstatic.com rel=preconnect crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Manrope:300,400,400i,700%7CFira+Mono&display=fallback"><style>body,input{font-family:"Manrope",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Fira Mono",SFMono-Regular,Consolas,Menlo,monospace}</style></head> <body dir=ltr data-md-color-scheme=preference data-md-color-primary data-md-color-accent=pink> <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#building-an-srl-agent class=md-skip> Skip to content </a> </div> <div data-md-component=announce> </div> <header class=md-header data-md-component=header> <nav class="md-header-nav md-grid" aria-label=Header> <a href=../.. title="SRL Docs" class="md-header-nav__button md-logo" aria-label="SRL Docs"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg> </a> <label class="md-header-nav__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg> </label> <div class=md-header-nav__title data-md-component=header-title> <div class=md-header-nav__ellipsis> <span class="md-header-nav__topic md-ellipsis"> SRL Docs </span> <span class="md-header-nav__topic md-ellipsis"> Building an SRL Agent </span> </div> </div> <label class="md-header-nav__button md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> </label> <div class=md-search data-md-component=search role=dialog> <label class=md-search__overlay for=__search></label> <div class=md-search__inner role=search> <form class=md-search__form name=search> <input type=text class=md-search__input name=query aria-label=Search placeholder=Search autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=search-query data-md-state=active> <label class="md-search__icon md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </label> <button type=reset class="md-search__icon md-icon" aria-label=Clear data-md-component=search-reset tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg> </button> </form> <div class=md-search__output> <div class=md-search__scrollwrap data-md-scrollfix> <div class=md-search-result data-md-component=search-result> <div class=md-search-result__meta> Initializing search </div> <ol class=md-search-result__list></ol> </div> </div> </div> </div> </div> <div class=md-header-nav__source> <a href=https://github.com/srl-wim/srldocs title="Go to repository" class=md-source> <div class="md-source__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg> </div> <div class=md-source__repository> srl-wim/srldocs </div> </a> </div> </nav> </header> <div class=md-container data-md-component=container> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--primary" aria-label=Navigation data-md-level=0> <label class=md-nav__title for=__drawer> <a href=../.. title="SRL Docs" class="md-nav__button md-logo" aria-label="SRL Docs"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg> </a> SRL Docs </label> <div class=md-nav__source> <a href=https://github.com/srl-wim/srldocs title="Go to repository" class=md-source> <div class="md-source__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg> </div> <div class=md-source__repository> srl-wim/srldocs </div> </a> </div> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../.. title=Home class=md-nav__link> Home </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-2 type=checkbox id=nav-2> <label class=md-nav__link for=nav-2> Python CLI Plugin <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label="Python CLI Plugin" data-md-level=1> <label class=md-nav__title for=nav-2> <span class="md-nav__icon md-icon"></span> Python CLI Plugin </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../python/introduction/ title=Introduction class=md-nav__link> Introduction </a> </li> <li class=md-nav__item> <a href=../../python/show/ title="CLI Show plugin" class=md-nav__link> CLI Show plugin </a> </li> <li class=md-nav__item> <a href=../../python/tools/ title="CLI Tools plugin" class=md-nav__link> CLI Tools plugin </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=nav-2-4 type=checkbox id=nav-2-4> <label class=md-nav__link for=nav-2-4> SRLinux Python Plugins <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label="SRLinux Python Plugins" data-md-level=2> <label class=md-nav__title for=nav-2-4> <span class="md-nav__icon md-icon"></span> SRLinux Python Plugins </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../python/command/ title=command class=md-nav__link> command </a> </li> <li class=md-nav__item> <a href=../../python/syntax/ title=syntax class=md-nav__link> syntax </a> </li> <li class=md-nav__item> <a href=../../python/schemanode/ title=schemanode class=md-nav__link> schemanode </a> </li> <li class=md-nav__item> <a href=../../python/data/ title=data class=md-nav__link> data </a> </li> <li class=md-nav__item> <a href=../../python/datachildrenoftype/ title=datachildrenoftype class=md-nav__link> datachildrenoftype </a> </li> <li class=md-nav__item> <a href=../../python/output/ title=output class=md-nav__link> output </a> </li> </ul> </nav> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class="md-sidebar md-sidebar--secondary" data-md-component=toc> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> Table of contents </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=#introduction class=md-nav__link> Introduction </a> </li> <li class=md-nav__item> <a href=#yang-file class=md-nav__link> YANG file </a> </li> <li class=md-nav__item> <a href=#code class=md-nav__link> Code </a> </li> <li class=md-nav__item> <a href=#yaml-file class=md-nav__link> YAML file </a> </li> <li class=md-nav__item> <a href=#packaging class=md-nav__link> Packaging </a> </li> <li class=md-nav__item> <a href=#installing class=md-nav__link> Installing </a> <nav class=md-nav aria-label=Installing> <ul class=md-nav__list> <li class=md-nav__item> <a href=#rpm class=md-nav__link> RPM </a> </li> <li class=md-nav__item> <a href=#ansible class=md-nav__link> ANSIBLE </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#configuration class=md-nav__link> Configuration </a> </li> <li class=md-nav__item> <a href=#consuming-the-agent class=md-nav__link> Consuming the Agent </a> </li> <li class=md-nav__item> <a href=#logging class=md-nav__link> Logging </a> </li> <li class=md-nav__item> <a href=#conclusion class=md-nav__link> Conclusion </a> </li> </ul> </nav> </div> </div> </div> <div class=md-content> <article class="md-content__inner md-typeset"> <h1 id=building-an-srl-agent>Building an SRL Agent<a class=headerlink href=#building-an-srl-agent title="Permanent link">#</a></h1> <h2 id=introduction>Introduction<a class=headerlink href=#introduction title="Permanent link">#</a></h2> <p>SR Linux is an open NOS that can be extended through the use of Agents. Agents are applications that can be build by anyone in almost any programming language (<a href=https://golang.org>golang</a>, <a href=https://www.python.org>python</a>, <a href=https://en.wikipedia.org/wiki/C_(programming_language)>c</a>, <a href=https://www.cplusplus.com>c++</a>, <a href=https://www.java.com/ >java</a>, <a href=https://www.javascript.com>javascript</a>, <a href=https://www.ruby-lang.org/ >rugby</a>, <a href=https://dart.dev>dart</a>, <a href=https://www.php.net>PHP</a>), to extend the SRL NOS and make it suitable for your specific environment. Multiple use case can be considered and the capabilities are endless. E.g. - Operations - Telemetry - Event Handling - Routing Protocols - Synthetic OAM - Security - Cloud - etc</p> <p>In this document we detail the basics of how such agents can be build, packaged and used in production. Through a <a href=https://www.google.com>hello world</a> example we illustrate the steps</p> <h2 id=yang-file>YANG file<a class=headerlink href=#yang-file title="Permanent link">#</a></h2> <p>The first step is defining how the agent should be configured, how it is exposing its state and how it is notifying the ouside world about important information it sees. SRL is using YANG, which is a data modeling language defined in IETF, for describing the configuration and state elements of the agent. YANG is defined in <a href=https://tools.ietf.org/html/rfc6020>RFC6020</a> (YANG 1.0) and <a href=https://tools.ietf.org/html/rfc7950>RFC7950</a> (YANG 1.1).</p> <p>The base SRL data YANG files can be found here: <a href>Base SRL YANG modes</a></p> <p>To Illustrate how to build a YANG file an example is shown below based on a simple hello world example: <div class=highlight><pre><span></span><code>module helloworld {
+
+    yang-version 1.1;
+
+    // namespace
+    namespace &quot;urn:srl_ndk_apps/helloworld&quot;;
+
+    prefix &quot;srl_ndk_apps-helloworld&quot;;
+
+    revision &quot;2020-06-05&quot; {
+        description &quot;Initial revision&quot;;
+    }
+
+    grouping helloworld-top {
+        description &quot;Top level grouping for hello world sample app&quot;;
+
+        container hello {
+            presence &quot;Top-level container for the hello world sample app&quot;;
+            description &quot;Top level enclosing container for helloworld sample app
+                         config and operational state data&quot;;
+
+            leaf name {
+                description &quot;Who am I saying hello to?&quot;;
+                type string {
+                    length 0..255;
+                    pattern &#39;[A-Za-z0-9]*&#39;;
+                }
+            }
+
+            leaf response {
+                config false;
+                description &quot;Response to input&quot;;
+                type string;
+            }
+        }
+    }
+
+    uses helloworld-top;
+}
+</code></pre></div></p> <p>You can build of course more advanced YANG models and there is many more parameters defined in the YANG data modeling language, so it is good to check out <a href=https://tools.ietf.org/html/rfc6020>RFC6020</a> (YANG 1.0) and <a href=https://tools.ietf.org/html/rfc7950>RFC7950</a> (YANG 1.1).</p> <p>I just wanted to explain some basic concepts to get you started.</p> <p>Elements used in the example are: - module: name of the module, here we use the name of the agent - yang-version: We use YANG1.1 as defined in <a href=https://tools.ietf.org/html/rfc7950>RFC7950</a> - namespace: Each module is bound to a namespace to make them unique in your environemnt. Hence it is good practice to use the agent name in the namespace element. - prefix: The "prefix" statement is used to define the prefix associated with the module and its namespace. It is used to access the module - revision: specifies the editorial revision history of the module - grouping: The "grouping" statement is used to define a reusable block of nodes, which may be used locally in the module or submodule, and by other modules that import from it - container: defines an interior data node in the schema tree, in this example hello - leaf: used to define a leaf node in the schema tree - config: false, means this is a state - type: defines the types, similar to programming languages like string, integers, enums, etc - uses: </p> <p>By using pyang you can validate your yang file and check for inconsistencies. If the result is positive, you can start writing your code logic.</p> <p>command: <div class=highlight><pre><span></span><code>pyang -f tree -p . helloworld.yang
+</code></pre></div> output: <div class=highlight><pre><span></span><code>module: helloworld
+  +--rw hello!
+     +--rw name?       string
+     +--ro response?   string
+</code></pre></div></p> <h2 id=code>Code<a class=headerlink href=#code title="Permanent link">#</a></h2> <p>Now that we understand how the data of the application is modeled we have to write code that performs the specific logic for you application.</p> <p>As mentioned in the beginning, almost any programming language can be used: <a href=https://golang.org>golang</a>, <a href=https://www.python.org>python</a>, <a href=https://en.wikipedia.org/wiki/C_(programming_language)>c</a>, <a href=https://www.cplusplus.com>c++</a>, <a href=https://www.java.com/ >java</a>, <a href=https://www.javascript.com>javascript</a>, <a href=https://www.ruby-lang.org/ >rugby</a>, <a href=https://dart.dev>dart</a>, <a href=https://www.php.net>PHP</a></p> <p>TO BE EXTENDED</p> <h2 id=yaml-file>YAML file<a class=headerlink href=#yaml-file title="Permanent link">#</a></h2> <p>SRL has a build in system management that handle the lifecycle of the agent. The configuration parameters are defined in a YAML file. An example is here:</p> <div class=highlight><pre><span></span><code>hello_world:
+   path: /opt/srlinux/usr/bin/
+   launch-command: ./helloworld
+   search-command: ./helloworld
+   failure-threshold: 100
+   failure-action: &quot;wait=60&quot;
+   wait-for-config: Yes
+   yang-modules:
+       names: 
+           - &quot;helloworld&quot;
+       source-directories:
+           - &quot;/opt/helloworld/yang/&quot;
+</code></pre></div> <p>Some clarifiction of the information we see in the example - hello_world: agent name - path: the directory where the agent binary is located - launch-command: the command used to start the applciation - search-command: the command used to search the application - wait-for-config: ensures the agent is not started unless there is a YANG configuration for this agent in the system. it allows to optimize resources and dont run processes when not needed - failure-threshold and failure-action: failure handling and back-off for the system when the agent fails - yang-modules: defines where the yang files for this agent are located - name: yang files - source-directories: location of the yang files</p> <h2 id=packaging>Packaging<a class=headerlink href=#packaging title="Permanent link">#</a></h2> <p>To package your application up in a rpm package you can use e.g. <a href=https://github.com/goreleaser/nfpm>nfpm</a> a simple deb and rpm packager written in <a href=https://golang.org>golang</a>.</p> <p>In order to us <a href=https://github.com/goreleaser/nfpm>nfpm</a> define a nfpm.yml file like this <div class=highlight><pre><span></span><code># nfpm example config file
+name: &quot;gohelloworld&quot;
+arch: &quot;amd64&quot;
+platform: &quot;linux&quot;
+version: &quot;v1&quot;
+section: &quot;default&quot;
+priority: &quot;extra&quot;
+replaces:
+- gohelloworld
+provides:
+- gohelloworld
+maintainer: &quot;Bruce Wallis &lt;bruce.wallis@nokia.com&gt;&quot;
+description: |
+  Simple hello world agent written in go.
+vendor: &quot;Nokia&quot;
+license: &quot;BSD 2&quot;
+bindir: &quot;/opt/srlinux/usr/bin/&quot;
+files:
+  ./helloworld: &quot;/opt/srlinux/usr/bin/helloworld&quot;
+  ./helloworld.yang: &quot;/opt/helloworld/yang/helloworld.yang&quot;
+  ./helloworld_config.yml: &quot;/etc/opt/srlinux/appmgr/helloworld_config.yml&quot;
+config_files:
+overrides:
+  rpm:
+    scripts:
+</code></pre></div></p> <p>The following objects should be defined: - name: agent rpm package name + add the same name in replaces/provides - maintainer: person who maintains this package - vendor - license - bindir: location of the binary, which shouls match with the YML file you create before - files: the files and their respective location on the SRL system; this would be the binary file, the yang files and the YAML file for the lifecycle management of the app</p> <p>Generating the rpm file: <div class=highlight><pre><span></span><code>nfpm pkg --packager rpm 
+</code></pre></div> this generates the rpm package <div class=highlight><pre><span></span><code>gohelloworld-1.0.0.x86_64.rpm
+</code></pre></div></p> <h2 id=installing>Installing<a class=headerlink href=#installing title="Permanent link">#</a></h2> <h3 id=rpm>RPM<a class=headerlink href=#rpm title="Permanent link">#</a></h3> <p>Using the rpm package it is easy to install by copying it in the system and using rpm install:</p> <div class=highlight><pre><span></span><code>scp gohelloworld-1.0.0.x86_64.rpm admin@&lt;ip address of srl system&gt;:/tmp
+sudo rpm -U /tmp/gohelloworld-1.0.0.x86_64.rpm
+</code></pre></div> <p>You can of course automate this using ansible or terraform or another automation solution</p> <h3 id=ansible>ANSIBLE<a class=headerlink href=#ansible title="Permanent link">#</a></h3> <p><a href=https://www.ansible.com>Ansible</a> is another way to install the files, but you have to mange the files individually. An example is available in this repo <a href=https://github.com/srl-wim/ansible-srl-agent-install>ansible-srl-agent install</a>.</p> <h2 id=configuration>Configuration<a class=headerlink href=#configuration title="Permanent link">#</a></h2> <p>Now that your agent is installed in the system we have to activate it in the system. We do this in the following way.</p> <p>login into the system <div class=highlight><pre><span></span><code>ssh admin@&lt;ip address&gt; 
+</code></pre></div> First we need to load the agent: <div class=highlight><pre><span></span><code>/ tools system app-management application app_mgr reload
+</code></pre></div> When you show the applications running on the system the agent should be visible <div class=highlight><pre><span></span><code>A:ant1-dc-fab-f1p1-leaf1# show system application
+  +------------------+---------+---------+----------------------+--------------------------+
+  |       Name       |   PID   |  State  |       Version        |       Last Change        |
+  +==================+=========+=========+======================+==========================+
+  | aaa_mgr          | 604     | running | v19.11.7-76-ged9563a | 2020-07-28T16:58:52.882Z |
+  | acl_mgr          | 616     | running | v19.11.7-76-ged9563a | 2020-07-28T16:58:52.883Z |
+  | app_mgr          | 524     | running | v19.11.7-76-ged9563a | 2020-07-28T16:58:52.945Z |
+  | arp_nd_mgr       | 628     | running | v19.11.7-76-ged9563a | 2020-07-28T16:58:52.883Z |
+  | bfd_mgr          | 639     | running | v19.11.7-76-ged9563a | 2020-07-28T16:58:52.883Z |
+  | bgp_mgr          | 1121    | running | v19.11.7-76-ged9563a | 2020-07-28T16:58:53.176Z |
+  | chassis_mgr      | 648     | running | v19.11.7-76-ged9563a | 2020-07-28T16:58:52.883Z |
+  | dev_mgr          | 541     | running |                      | 2020-07-28T16:58:52.199Z |
+  | dhcp_client_mgr  | 660     | running | v19.11.7-76-ged9563a | 2020-07-28T16:58:52.884Z |
+  | dnsmasq-mgmt     | 1359    | running |                      | 2020-07-28T16:58:56.986Z |
+  | fib_mgr          | 669     | running | v19.11.7-76-ged9563a | 2020-07-28T16:58:52.884Z |
+  | gnmi_server      | 1147    | running | v19.11.7-76-ged9563a | 2020-07-28T16:58:53.200Z |
+  | hello_world      | 1342230 | running | v19.11.7-76-ged9563a | 2020-07-30T08:53:21.092Z |
+  | idb_server       | 565     | running | v19.11.7-76-ged9563a | 2020-07-28T16:58:52.424Z |
+  | json_rpc         | 1149    | running | v19.11.7-76-ged9563a | 2020-07-28T16:58:53.208Z |
+  | linux_mgr        | 681     | running | v19.11.7-76-ged9563a | 2020-07-28T16:58:52.884Z |
+  | lldp_mgr         | 1144    | running | v19.11.7-76-ged9563a | 2020-07-28T16:58:53.190Z |
+  | log_mgr          | 690     | running | v19.11.7-76-ged9563a | 2020-07-28T16:58:52.884Z |
+  | mgmt_server      | 700     | running | v19.11.7-76-ged9563a | 2020-07-28T16:58:52.884Z |
+  | mpls_mgr         | 719     | running | v19.11.7-76-ged9563a | 2020-07-28T16:58:52.885Z |
+  | net_inst_mgr     | 739     | running | v19.11.7-76-ged9563a | 2020-07-28T16:58:52.885Z |
+  | oam_mgr          | 766     | running | v19.11.7-76-ged9563a | 2020-07-28T16:58:52.885Z |
+  | plcy_mgr         | 791     | running | v19.11.7-76-ged9563a | 2020-07-28T16:58:52.886Z |
+  | qos_mgr          | 1113    | running | v19.11.7-76-ged9563a | 2020-07-28T16:58:53.128Z |
+  | sdk_mgr          | 819     | running | v19.11.7-76-ged9563a | 2020-07-28T16:58:52.886Z |
+  | sshd-mgmt        | 1349    | running |                      | 2020-07-28T16:58:56.983Z |
+  | static_route_mgr | 852     | running | v19.11.7-76-ged9563a | 2020-07-28T16:58:52.887Z |
+  | supportd         | 532     | running |                      | 2020-07-28T16:58:52.087Z |
+  | testagent        | 16435   | running | v19.11.7-76-ged9563a | 2020-07-28T17:14:17.302Z |
+  | xdp_cpm          | 889     | running | v19.11.7-76-ged9563a | 2020-07-28T16:58:52.887Z |
+  | xdp_lc_1         | 927     | running | v19.11.7-76-ged9563a | 2020-07-28T16:58:52.887Z |
+  +------------------+---------+---------+----------------------+--------------------------+
+</code></pre></div> You see the helloworld agent appear in the application list. It has a PID of 1342230 in this example. If you defined in the YML file that the helloworld agent should have waited for configuration, the PID would not have been allocated since there was no configuration in the system and hence the agent process would not have started. Next step is configuring the agent Given SRL is a fully transactional system you first have to enter in the candidate datastore. <div class=highlight><pre><span></span><code>enter candidate
+</code></pre></div> Next you navigate through the CLI based on the YANG tree you defined. <div class=highlight><pre><span></span><code>/ hello
+commit stay
+</code></pre></div> You did not configure anything so far but you triggered the agent to look at the data. When looking at the state of the agent you would see the following <div class=highlight><pre><span></span><code>info from state
+</code></pre></div> output <div class=highlight><pre><span></span><code>    name &quot;&quot;
+    response &quot;Hello, do tell me your name&quot;
+</code></pre></div> The agent is waiting for a name to be configured <div class=highlight><pre><span></span><code>/ hello
+name wim
+</code></pre></div> Commit the changes <div class=highlight><pre><span></span><code>commit stay
+</code></pre></div> When you look at the state again you should see the following information updates <div class=highlight><pre><span></span><code>info from state
+</code></pre></div> output <div class=highlight><pre><span></span><code>    name wim
+    response &quot;Hello, wim&quot;
+</code></pre></div></p> <h2 id=consuming-the-agent>Consuming the Agent<a class=headerlink href=#consuming-the-agent title="Permanent link">#</a></h2> <p>Now that the agent is configured and running lets consume the agent from the outside worrld through GNMI. We use the following <a href=https://gnmic.kmrd.dev>gnmi client</a> to show the examples.</p> <p>SRL is configured for GNMI in the following way: <div class=highlight><pre><span></span><code>--{ candidate shared }--[ system gnmi-server ]--
+A:ant1-dc-fab-f1p1-leaf1# info
+    admin-state enable
+    timeout 7200
+    rate-limit 60
+    session-limit 20
+    network-instance mgmt {
+        admin-state enable
+        use-authentication true
+        port 57400
+        tls-profile tls-profile-1
+    }
+    unix-socket {
+        admin-state disable
+        use-authentication true
+    }
+--{ candidate shared }--[ system gnmi-server ]--
+</code></pre></div> We use port 57400 in the mgmt network instance.</p> <p>Lets first get the information <div class=highlight><pre><span></span><code>gnmic -a 10.1.1.2:57400 -u admin -p admin --skip-verify -e json_ietf get --path /hello
+</code></pre></div> output <div class=highlight><pre><span></span><code><span class=p>{</span>
+  <span class=nt>&quot;source&quot;</span><span class=p>:</span> <span class=s2>&quot;10.1.1.2:57400&quot;</span><span class=p>,</span>
+  <span class=nt>&quot;timestamp&quot;</span><span class=p>:</span> <span class=mi>1596100364586956453</span><span class=p>,</span>
+  <span class=nt>&quot;time&quot;</span><span class=p>:</span> <span class=s2>&quot;2020-07-30T09:12:44.586956453Z&quot;</span><span class=p>,</span>
+  <span class=nt>&quot;updates&quot;</span><span class=p>:</span> <span class=p>[</span>
+    <span class=p>{</span>
+      <span class=nt>&quot;Path&quot;</span><span class=p>:</span> <span class=s2>&quot;/helloworld:hello&quot;</span><span class=p>,</span>
+      <span class=nt>&quot;values&quot;</span><span class=p>:</span> <span class=p>{</span>
+        <span class=nt>&quot;helloworld:hello&quot;</span><span class=p>:</span> <span class=p>{</span>
+          <span class=nt>&quot;name&quot;</span><span class=p>:</span> <span class=s2>&quot;wim&quot;</span><span class=p>,</span>
+          <span class=nt>&quot;response&quot;</span><span class=p>:</span> <span class=s2>&quot;Hello, wim&quot;</span>
+        <span class=p>}</span>
+      <span class=p>}</span>
+    <span class=p>}</span>
+  <span class=p>]</span>
+<span class=p>}</span>
+</code></pre></div> we can also get streaming telemetry from the system <div class=highlight><pre><span></span><code>gnmic -a 10.1.1.2:57400 -u admin -p admin --skip-verify -e json_ietf sub --path &quot;/hello&quot;
+</code></pre></div> output <div class=highlight><pre><span></span><code><span class=p>{</span>
+  <span class=nt>&quot;source&quot;</span><span class=p>:</span> <span class=s2>&quot;10.1.1.2:57400&quot;</span><span class=p>,</span>
+  <span class=nt>&quot;subscription-name&quot;</span><span class=p>:</span> <span class=s2>&quot;default&quot;</span><span class=p>,</span>
+  <span class=nt>&quot;timestamp&quot;</span><span class=p>:</span> <span class=mi>1596101041094828877</span><span class=p>,</span>
+  <span class=nt>&quot;time&quot;</span><span class=p>:</span> <span class=s2>&quot;2020-07-30T09:24:01.094828877Z&quot;</span><span class=p>,</span>
+  <span class=nt>&quot;updates&quot;</span><span class=p>:</span> <span class=p>[</span>
+    <span class=p>{</span>
+      <span class=nt>&quot;Path&quot;</span><span class=p>:</span> <span class=s2>&quot;helloworld:hello&quot;</span><span class=p>,</span>
+      <span class=nt>&quot;values&quot;</span><span class=p>:</span> <span class=p>{</span>
+        <span class=nt>&quot;helloworld:hello&quot;</span><span class=p>:</span> <span class=p>{</span>
+          <span class=nt>&quot;name&quot;</span><span class=p>:</span> <span class=s2>&quot;wim&quot;</span><span class=p>,</span>
+          <span class=nt>&quot;response&quot;</span><span class=p>:</span> <span class=s2>&quot;Hello, wim&quot;</span>
+        <span class=p>}</span>
+      <span class=p>}</span>
+    <span class=p>}</span>
+  <span class=p>]</span>
+<span class=p>}</span>
+</code></pre></div> when you would update the name in the hello yang tree you will be notified on the change of the data. <div class=highlight><pre><span></span><code>--{ candidate shared }--[ hello ]--
+A:ant1-dc-fab-f1p1-leaf1# name bruce
+--{ candidate shared }--[ hello ]--
+A:ant1-dc-fab-f1p1-leaf1# commit say
+</code></pre></div> GNMI subscription output <div class=highlight><pre><span></span><code><span class=p>{</span>
+  <span class=nt>&quot;source&quot;</span><span class=p>:</span> <span class=s2>&quot;10.1.1.2:57400&quot;</span><span class=p>,</span>
+  <span class=nt>&quot;subscription-name&quot;</span><span class=p>:</span> <span class=s2>&quot;default&quot;</span><span class=p>,</span>
+  <span class=nt>&quot;timestamp&quot;</span><span class=p>:</span> <span class=mi>1596101063590975148</span><span class=p>,</span>
+  <span class=nt>&quot;time&quot;</span><span class=p>:</span> <span class=s2>&quot;2020-07-30T09:24:23.590975148Z&quot;</span><span class=p>,</span>
+  <span class=nt>&quot;updates&quot;</span><span class=p>:</span> <span class=p>[</span>
+    <span class=p>{</span>
+      <span class=nt>&quot;Path&quot;</span><span class=p>:</span> <span class=s2>&quot;helloworld:hello&quot;</span><span class=p>,</span>
+      <span class=nt>&quot;values&quot;</span><span class=p>:</span> <span class=p>{</span>
+        <span class=nt>&quot;helloworld:hello&quot;</span><span class=p>:</span> <span class=p>{</span>
+          <span class=nt>&quot;name&quot;</span><span class=p>:</span> <span class=s2>&quot;bruce&quot;</span><span class=p>,</span>
+          <span class=nt>&quot;response&quot;</span><span class=p>:</span> <span class=s2>&quot;Hello, bruce&quot;</span>
+        <span class=p>}</span>
+      <span class=p>}</span>
+    <span class=p>}</span>
+  <span class=p>]</span>
+<span class=p>}</span>
+</code></pre></div></p> <p>As you can see hopefully SRL is a very open NOS which provides you a complete extendable framework. SRL leverages YANG as the data modeling language, which is very easy to consume using GNMI and you get a full managable and observable system that can be tailored according your needs. The open NOS.</p> <h2 id=logging>Logging<a class=headerlink href=#logging title="Permanent link">#</a></h2> <p>Information that the agent is providing is also send to /var/log/srlinux/stdout/<agentname>.log and can be sent to syslog, etc.</p> <h2 id=conclusion>Conclusion<a class=headerlink href=#conclusion title="Permanent link">#</a></h2> <p>I hope you enjoyed the read/experience of the process to go through to extend the SRL NOS using agents. Now it is time to find the time, passion and pleasure to knock yourself out and create your own destiny in networking by leveraging the SRL NOS.</p> </article> </div> </div> </main> <footer class=md-footer> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <div class=md-footer-copyright> Made with <a href=https://squidfunk.github.io/mkdocs-material/ target=_blank rel=noopener> Material for MkDocs </a> </div> <div class=md-footer-social> <a href=https://github.com/srl-wim target=_blank rel=noopener title=github.com class=md-footer-social__link> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> </a> </div> </div> </div> </footer> </div> <script src=../../assets/javascripts/vendor.3636a4ec.min.js></script> <script src=../../assets/javascripts/bundle.e9fe3281.min.js></script><script id=__lang type=application/json>{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script> <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script> </body> </html>
